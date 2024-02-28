@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entrega5Form", "Entrega5Form\Entrega5Form.csproj", "{1C64E152-C7D9-46F4-8662-94C003ADA576}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4054DF6F-0289-4F12-A708-8A061E7C4C29} = {4054DF6F-0289-4F12-A708-8A061E7C4C29}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{4054DF6F-0289-4F12-A708-8A061E7C4C29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C64E152-C7D9-46F4-8662-94C003ADA576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C64E152-C7D9-46F4-8662-94C003ADA576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C64E152-C7D9-46F4-8662-94C003ADA576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C64E152-C7D9-46F4-8662-94C003ADA576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4054DF6F-0289-4F12-A708-8A061E7C4C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4054DF6F-0289-4F12-A708-8A061E7C4C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4054DF6F-0289-4F12-A708-8A061E7C4C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4054DF6F-0289-4F12-A708-8A061E7C4C29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F56E508A-16F4-4B10-A49C-C4203993221D}
+	EndGlobalSection
+EndGlobal
