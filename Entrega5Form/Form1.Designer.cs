@@ -28,12 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            panel_contenedor = new Panel();
+            alta_venta = new Button();
+            listar_ventas = new Button();
+            panel_contenedor.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel_contenedor
+            // 
+            panel_contenedor.Controls.Add(alta_venta);
+            panel_contenedor.Controls.Add(listar_ventas);
+            panel_contenedor.Dock = DockStyle.Fill;
+            panel_contenedor.Location = new Point(0, 0);
+            panel_contenedor.Name = "panel_contenedor";
+            panel_contenedor.Size = new Size(800, 450);
+            panel_contenedor.TabIndex = 1;
+            // 
+            // alta_venta
+            // 
+            alta_venta.Location = new Point(313, 97);
+            alta_venta.Name = "alta_venta";
+            alta_venta.Size = new Size(114, 48);
+            alta_venta.TabIndex = 2;
+            alta_venta.Text = "Alta Venta";
+            alta_venta.UseVisualStyleBackColor = true;
+            alta_venta.Click += button1_Click;
+            // 
+            // listar_ventas
+            // 
+            listar_ventas.Location = new Point(313, 210);
+            listar_ventas.Name = "listar_ventas";
+            listar_ventas.Size = new Size(114, 49);
+            listar_ventas.TabIndex = 0;
+            listar_ventas.Text = "Listar Ventas";
+            listar_ventas.UseVisualStyleBackColor = true;
+            listar_ventas.Click += button2_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(panel_contenedor);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Form1";
+            Text = "Form1";
+            panel_contenedor.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
+        private Panel panel_contenedor;
+        private Button alta_venta;
+        private Button listar_ventas;
     }
 }
