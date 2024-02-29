@@ -1,3 +1,7 @@
+using Data.Data;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+
 namespace Entrega5Form
 {
     internal static class Program
@@ -8,8 +12,15 @@ namespace Entrega5Form
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var optionsBuilder = new DbContextOptionsBuilder<Entrega5DbContext>();
+            var connectionString = "Host=localhost;Port=5432;Database=Entrega5;Persist Security Info=True;Password=Estudiantes000;Username=postgres";
+            optionsBuilder.UseNpgsql(connectionString);
+
+            using (var dbContext = new Entrega5DbContext(optionsBuilder.Options))
+            {
+                dbContext.Database.EnsureCreated();
+            }
+
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }

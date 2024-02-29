@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data.Data;
+using Data.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace Entrega5Form
 {
     public partial class Form2 : Form
     {
+        private Entrega5DbContext _entrega5DbContext;
+        private Venta venta;
         public Form2()
         {
             InitializeComponent();
@@ -27,16 +31,7 @@ namespace Entrega5Form
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
         {
 
         }

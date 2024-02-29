@@ -9,7 +9,7 @@ namespace Entrega5Form
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form formulario = new Form6();
+            Form formulario = new Form3();
             formulario.ShowDialog();
         }
 

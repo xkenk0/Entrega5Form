@@ -46,17 +46,16 @@
             // 
             // alta_venta
             // 
-            alta_venta.Location = new Point(313, 97);
+            alta_venta.Location = new Point(324, 125);
             alta_venta.Name = "alta_venta";
             alta_venta.Size = new Size(114, 48);
             alta_venta.TabIndex = 2;
-            alta_venta.Text = "Alta Venta";
             alta_venta.UseVisualStyleBackColor = true;
             alta_venta.Click += button1_Click;
             // 
             // listar_ventas
             // 
-            listar_ventas.Location = new Point(313, 210);
+            listar_ventas.Location = new Point(324, 238);
             listar_ventas.Name = "listar_ventas";
             listar_ventas.Size = new Size(114, 49);
             listar_ventas.TabIndex = 0;
