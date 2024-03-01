@@ -90,6 +90,18 @@ namespace Entrega5Form
                 return 0;
             }
         }
+        private int ObtenerUltimoIdVenta()
+        {
+            var ultimaVenta = _entrega5DbContext.Venta.OrderByDescending(v => v.Id).FirstOrDefault();
+            if (ultimaVenta != null)
+            {
+                return ultimaVenta.Id;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -118,8 +130,6 @@ namespace Entrega5Form
             }
             else
             {
-                //int aux = dataGridView1.RowCount;
-                //MessageBox.Show(Convert.ToString(aux));
                 MessageBox.Show("Por favor, seleccione un elemento del ListBox.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -195,7 +205,7 @@ namespace Entrega5Form
                 MessageBox.Show("Error en la carga de datos para agregar un detalle de Venta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private float AgregarFilaABaseDeDatos(DataGridViewRow fila, Venta venta)
+        private float AgregarFilaABaseDeDatos(DataGridViewRow fila, Venta venta, int auxiliar)
         {
             List<object> valoresCeldas = new List<object>();
             foreach (DataGridViewCell celda in (fila.Cells))
@@ -204,17 +214,17 @@ namespace Entrega5Form
             }
             VentaDetalle ventaDetalle = new VentaDetalle
             {
-                Id = ObtenerUltimoIdVentaDetalle() + 1, 
+                Id = ObtenerUltimoIdVentaDetalle() + auxiliar, 
                 cantidad = Convert.ToInt32(valoresCeldas[2]), 
-                precio = Convert.ToSingle(valoresCeldas[3]), 
+                precio = Convert.ToSingle(valoresCeldas[3]),
                 insumoId = Convert.ToInt32(valoresCeldas[0]),             
-                insumo = _entrega5DbContext.Insumo.Find(Convert.ToInt32(valoresCeldas[0])),
+                insumo = _entrega5DbContext.Insumo.FirstOrDefault(i => i.Id == (Convert.ToInt32(valoresCeldas[0]))),
+                ventaId = venta.Id,
             };
-            MessageBox.Show(Convert.ToString(ventaDetalle.insumoId));
             _entrega5DbContext.VentaDetalle.Add(ventaDetalle);
-            _entrega5DbContext.SaveChanges();
             return Convert.ToSingle(valoresCeldas[3]);
         }
+
         private List<Cuota> CrearCuotas(Venta venta, int cantidadCuotas)
         {
             List<Cuota> cuotas = new List<Cuota>();
@@ -241,10 +251,13 @@ namespace Entrega5Form
             {
                 Venta venta = new Venta();
                 float aux = 0;
+                int auxiliar = 1;
+                venta.Id = ObtenerUltimoIdVenta() + 1;
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
                     DataGridViewRow fila = dataGridView1.Rows[i];
-                    aux = aux + AgregarFilaABaseDeDatos(fila, venta);
+                    aux = aux + AgregarFilaABaseDeDatos(fila, venta, auxiliar);
+                    auxiliar++;
                 }
                 venta.cliente = _entrega5DbContext.Cliente.FirstOrDefault(c => c.cuil == label11.Text);
                 venta.clienteId = _entrega5DbContext.Cliente.FirstOrDefault(c => c.cuil == label11.Text).Id;
@@ -255,8 +268,15 @@ namespace Entrega5Form
                 venta.importeTotal = aux;
                 List<Cuota> cuotas = CrearCuotas(venta, (int)numericUpDown1.Value);
                 venta.cuotas = cuotas;
+                MessageBox.Show("Cuotas creadas satisfactoriamente");
                 _entrega5DbContext.Venta.Add(venta);
                 _entrega5DbContext.SaveChanges();
+                MessageBox.Show("Venta agregada satisfactoriamente");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error");
             }
         }
     }

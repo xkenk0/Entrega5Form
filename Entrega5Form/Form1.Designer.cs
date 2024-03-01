@@ -120,11 +120,11 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(23, 24);
+            label7.Location = new Point(15, 24);
             label7.Name = "label7";
-            label7.Size = new Size(117, 15);
+            label7.Size = new Size(122, 15);
             label7.TabIndex = 9;
-            label7.Text = "Codigo de producto:";
+            label7.Text = "Nombre de producto:";
             // 
             // label8
             // 
@@ -137,7 +137,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(146, 21);
+            textBox4.Location = new Point(143, 21);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(103, 23);
             textBox4.TabIndex = 12;
