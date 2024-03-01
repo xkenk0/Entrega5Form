@@ -20,8 +20,8 @@ namespace Entrega5Form
         private Venta venta;
         private Cliente cliente;
         private Insumo insumo;
-        private DateTime fechaIni = DateTime.Now;
-        private DateTime fechaFin = DateTime.Now.AddDays(30);
+        private DateTime fechaIni = DateTime.UtcNow;
+        private DateTime fechaFin = DateTime.UtcNow.AddDays(30);
         public Form1()
         {
             InitializeComponent();
@@ -68,7 +68,14 @@ namespace Entrega5Form
         private int ObtenerUltimoNumeroVenta()
         {
             var ultimaVenta = _entrega5DbContext.Venta.OrderByDescending(v => v.numeroVenta).FirstOrDefault();
-            return ultimaVenta.numeroVenta;
+            if (ultimaVenta == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return ultimaVenta.numeroVenta;
+            }
         }
 
         private int ObtenerUltimoIdVentaDetalle()
@@ -191,20 +198,19 @@ namespace Entrega5Form
         private float AgregarFilaABaseDeDatos(DataGridViewRow fila, Venta venta)
         {
             List<object> valoresCeldas = new List<object>();
-            foreach (DataGridViewCell celda in fila.Cells)
+            foreach (DataGridViewCell celda in (fila.Cells))
             {
                 valoresCeldas.Add(celda.Value);
             }
             VentaDetalle ventaDetalle = new VentaDetalle
             {
-                Id = ObtenerUltimoIdVentaDetalle() + 1, // Suponiendo que el primer valor es el nombre
-                cantidad = Convert.ToInt32(valoresCeldas[2]), // Suponiendo que el segundo valor es la cantidad
-                precio = Convert.ToSingle(valoresCeldas[3]), // Suponiendo que el tercer valor es el precio
-                insumoId = Convert.ToInt32(valoresCeldas[0]),             // Asignar otras propiedades según sea necesario
+                Id = ObtenerUltimoIdVentaDetalle() + 1, 
+                cantidad = Convert.ToInt32(valoresCeldas[2]), 
+                precio = Convert.ToSingle(valoresCeldas[3]), 
+                insumoId = Convert.ToInt32(valoresCeldas[0]),             
                 insumo = _entrega5DbContext.Insumo.Find(Convert.ToInt32(valoresCeldas[0])),
-                ventaId = venta.Id,
-                venta = venta,
             };
+            MessageBox.Show(Convert.ToString(ventaDetalle.insumoId));
             _entrega5DbContext.VentaDetalle.Add(ventaDetalle);
             _entrega5DbContext.SaveChanges();
             return Convert.ToSingle(valoresCeldas[3]);
@@ -235,8 +241,9 @@ namespace Entrega5Form
             {
                 Venta venta = new Venta();
                 float aux = 0;
-                foreach (DataGridViewRow fila in dataGridView1.Rows)
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
+                    DataGridViewRow fila = dataGridView1.Rows[i];
                     aux = aux + AgregarFilaABaseDeDatos(fila, venta);
                 }
                 venta.cliente = _entrega5DbContext.Cliente.FirstOrDefault(c => c.cuil == label11.Text);
