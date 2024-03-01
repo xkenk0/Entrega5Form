@@ -16,9 +16,10 @@ namespace Data.Modelos
         public DateTime fechaIni { get; set; }
         public float importeTotal { get; set; }
         public int numeroVenta { get; set; }
-        public string tipoCondicionPago { get; set; }
+        public string? tipoCondicionPago { get; set; }
         [ForeignKey("Cliente")]
         public int clienteId { get; set; }
         public Cliente cliente { get; set; }
+        public List<Cuota> cuotas { get; set; }
     }
 }

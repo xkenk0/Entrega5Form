@@ -20,7 +20,7 @@ namespace Data.Modelos
         public int ventaId { get; set; }
         public Venta venta {  get; set; }
         [ForeignKey("Cobranza")]
-        public int cobranzaId { get; set; }
-        public Cobranza cobranza { get; set; }
+        public int? cobranzaId { get; set; }
+        public Cobranza? cobranza { get; set; }
     }
 }

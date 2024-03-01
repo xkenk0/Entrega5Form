@@ -16,7 +16,7 @@ namespace Data.Modelos
         public float precio { get; set; }
         [ForeignKey("Venta")]
         public int ventaId { get; set; }
-        public Venta venta { get; set; }
+        public Venta? venta { get; set; }
         [ForeignKey("Insumo")]
         public int insumoId { get; set; }
         public Insumo insumo { get; set; }

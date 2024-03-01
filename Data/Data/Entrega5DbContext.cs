@@ -33,6 +33,7 @@ namespace Data.Data
         public virtual DbSet<TransferenciaBancaria> TransferenciaBancaria {  get; set; }
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaDetalle> VentaDetalle { get; set; }
+        public virtual DbSet<TipoCondicionPago> TipoCondicionPago { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
